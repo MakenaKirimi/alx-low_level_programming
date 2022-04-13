@@ -1,16 +1,25 @@
-#ifndef CALCH
-#define CALCH
+#ifndef CALC_H
+#define CALC_H
+
+#include <stdlib.h>
+#include <stdio.h>
 
 /**
- * struct opp - structure for ops type
- * @op: operatr
- * @f: associated function
+ * struct op - Struct op
  *
- * Description:structure for operation
+ * @op: The operator
+ * @f: The function associated
  */
-typedef struct opp
+typedef struct op
 {
 	char *op;
-	int (*f)(int, int);
+	int (*f)(int a, int b);
 } op_t;
-#endif
+int op_add(int a, int b);
+int op_sub(int a, int b);
+int op_mul(int a, int b);
+int op_div(int a, int b);
+int op_mod(int a, int b);
+int (*get_op_func(char *s))(int, int);
+
+#endif /* CALC_H */

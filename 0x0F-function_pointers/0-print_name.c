@@ -1,14 +1,14 @@
 #include "function_pointers.h"
+
 /**
- * print_name -prints name decorated
- * @name: name given
- * @f: decorator function ponter
+ * print_name - prints name through passed in function pointer
  *
- * Description: print name diffrently based on function input
+ * @name: character string
+ * @f: function pointer
+ * Return: nothing
  */
 void print_name(char *name, void (*f)(char *))
 {
-	if (f == NULL)
-		return;
-	f(name);
+	if (f)
+		f(name);
 }

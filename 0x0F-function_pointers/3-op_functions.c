@@ -1,65 +1,63 @@
-#include "function_pointers.h"
 #include "3-calc.h"
+
 /**
- * op_add -add two nums
- * @a: first
- * @b: second
+ * op_add - adds two integers
  *
- * Description: add two nums
+ * @a: first integer
+ * @b: second integer
  *
- * Return: sum
+ * Return: integer
  */
 int op_add(int a, int b)
 {
 	return (a + b);
 }
+
 /**
- * op_sub -subtract two nums
- * @a: first num
- * @b: second num
+ * op_sub - subtracts two integers
  *
- * Description: sub tract second num from first
+ * @a: first integer
+ * @b: second integer
  *
- * Return: diff
+ * Return: integer
  */
 int op_sub(int a, int b)
 {
 	return (a - b);
 }
+
 /**
- * op_mul -multiply two nums
- * @a: first num
- * @b: second num
+ * op_mul - multiplies two integers
  *
- * Description: multiply two nums
+ * @a: first integer
+ * @b: second integer
  *
- * Return: product
+ * Return: integer
  */
 int op_mul(int a, int b)
 {
 	return (a * b);
 }
 /**
- * op_div -divide two nums
- * @a: first
- * @b: second
+ * op_div - divides two integers
  *
- * Description: divide first num by second
+ * @a: first integer
+ * @b: second integer
  *
- * Return: div result
+ * Return: integer
  */
 int op_div(int a, int b)
 {
 	return (a / b);
 }
+
 /**
- * op_mod -divide and return reminder
- * @a: numerator
- * @b: denom
+ * op_mod - returns the modulus of two integers
  *
- * Description: return reminder
+ * @a: first integer
+ * @b: second integer
  *
- * Return: reminder
+ * Return: integer
  */
 int op_mod(int a, int b)
 {
