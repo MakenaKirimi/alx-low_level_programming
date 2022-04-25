@@ -1,76 +1,45 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - inserts a node at the specified index @idx if it
- * is possible, otherwise it returns NULL
- * @head: the first node of the linked list
- * @idx: the index where the new node is to be added
- * @n: the value of the new node
+ * insert_nodeint_at_index - Inserts a new node to a listint_t
+ *                           list at a given position.
+ * @head: A pointer to the address of the
+ *        head of the listint_t list.
+ * @idx: The index of the listint_t list where the new
+ *       node should be added - indices start at 0.
+ * @n: The integer for the new node to contain.
  *
- * Return: newly added node or NULL if function fails
+ * Return: If the function fails - NULL.
+ *         Otherwise - the address of the new node.
  */
-
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
-	unsigned int i, len;
-	listint_t *first_node, *new_node, *next_to_new_node;
+	listint_t *new, *copy = *head;
+	unsigned int node;
 
-	if (!head)
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
 		return (NULL);
 
-	len = list_len(*head);
-	first_node = *head;
-	new_node = malloc(sizeof(listint_t));
+	new->n = n;
 
-	if (!new_node)
+	if (idx == 0)
 	{
-		free(new_node);
-		return (NULL);
+		new->next = copy;
+		*head = new;
+		return (new);
 	}
 
-	new_node->n = n;
-	new_node->next = NULL;
-	if (!len)
-		return (NULL);
-	else if (idx + 1 > len + 1)
+	for (node = 0; node < (idx - 1); node++)
 	{
-		return (NULL);
-	}
-	else if (idx != 0)
-	{
-		for (i = 0; i < idx - 1; i++)
-			*head = (*head)->next;
-		next_to_new_node = (*head)->next;
+		if (copy == NULL || copy->next == NULL)
+			return (NULL);
 
-		(*head)->next = new_node;
-		new_node->next = next_to_new_node;
-		*head = first_node;
-	}
-	else
-	{
-		new_node->next = *head;
-		*head = new_node;
-	}
-	return (new_node);
-}
-
-/**
- * list_len - get the number of nodes in the linked list @h
- * @h: the linked list whose size is to be calculated
- *
- * Return: the size of the list
- */
-unsigned int list_len(listint_t *h)
-{
-	unsigned int nodes = 0;
-	listint_t *first_node = h;
-
-	while (h != NULL)
-	{
-		nodes++;
-		h = h->next;
+		copy = copy->next;
 	}
 
-	h = first_node;
-	return (nodes);
+	new->next = copy->next;
+	copy->next = new;
+
+	return (new);
 }
