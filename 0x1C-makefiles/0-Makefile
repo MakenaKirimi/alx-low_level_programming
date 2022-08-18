@@ -1,2 +1,7 @@
-all: main.c holberton.c
-	gcc main.c holberton.c -o holberton
+CC=gcc
+
+all: main.o school.o
+	$(CC) -o school main.o school.o
+
+clean:
+	rm *.o
