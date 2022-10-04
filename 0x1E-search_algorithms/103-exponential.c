@@ -1,17 +1,35 @@
 #include "search_algos.h"
+
 /**
- * binary_search - using binary search algorithm, searches through an int
- * array for a value
+ * exponential_search - searches for a value in a sorted array of integers
+ * using the Exponential search algorithm
  * @array: pointer to the first element of the array to search in
  * @size: the number of elements in the array
  * @value: the value to search for in @array
  *
  * Return: The first index where value is located, -1 otherwise
  */
-int binary_search(int *array, size_t size, int value)
+int exponential_search(int *array, size_t size, int value)
 {
 
-	int lo = 0, hi = (int) size - 1, mid;
+	int i, lo, hi, mid;
+
+	for (i = 0; array && i < (int) size ; i++)
+	{
+		hi = power(2, i);
+		lo = i == 0 ? 0 : power(2, i - 1);
+		if (hi >= (int) size)
+		{
+			hi = (int) size - 1;
+			printf("Value found between indexes [%d] and [%d]\n", lo, hi);
+			break;
+		} else if (value >= array[i] && value <= array[hi])
+		{
+			printf("Value found between indexes [%d] and [%d]\n", lo, hi);
+			break;
+		}
+		printf("Value checked array[%d] = [%d]\n", hi, array[hi]);
+	}
 
 	for (mid = (lo + hi) / 2; hi - lo > -1; mid = (lo + hi) / 2)
 	{
@@ -56,3 +74,22 @@ void print_array(int *array, int lower_bound, int upper_bound)
 	printf("\n");
 }
 
+/**
+ * power - calculates the power of base to exponent
+ * @base: number to be exponentiated
+ * @exponent: the power
+ *
+ * Return: base ^ exponent
+ */
+int power(int base, int exponent)
+{
+	int result = 1;
+
+	while (exponent > 0)
+	{
+		result = result * base;
+		exponent--;
+	}
+
+	return (result);
+}
